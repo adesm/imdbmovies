@@ -27,12 +27,21 @@ public class Builder {
     private RecyclerViewAdapter recyclerViewAdapter;
     private String fullurl;
     private Activity activity;
-    private boolean isSUccess = false;
+    public static AlertDialog.Builder alert;
+    public static ProgressDialog dialog;
 
     public Builder(Context context,String fullurl) {
         this.context = context;
         this.fullurl = fullurl;
         this.activity = (Activity)context;
+        alert = new AlertDialog.Builder(context);
+        dialog = new ProgressDialog(context);
+
+        alert.setTitle(R.string.str_alert_error_title);
+        alert.setIcon(android.R.drawable.ic_dialog_alert);
+
+        dialog.setMessage(activity.getString(R.string.str_alert_load));
+        dialog.setCancelable(true);
     }
 
     public void buildRecycler(RecyclerView recyclerView){
@@ -46,6 +55,7 @@ public class Builder {
     }
 
     private void requestJsonObject(RecyclerView recyclerView) {
+        dialog.show();
         RequestParams params = new RequestParams();
         params.put("api_key",API_KEY);
         myParsingGson(params,fullurl,recyclerView);
@@ -57,7 +67,7 @@ public class Builder {
         asyncHttpClient.get(fullurl,params,new AsyncHttpResponseHandler(){
             @Override
             public void onSuccess(String content) {
-                isSUccess= true;
+                dialog.hide();
                 try {
                     GsonBuilder builder = new GsonBuilder();
                     Gson myGson = builder.create();
@@ -66,32 +76,25 @@ public class Builder {
                     recyclerView.setAdapter(recyclerViewAdapter);
                 }catch (Exception e){
                     e.printStackTrace();
-//                    MainActivity.alert.setTitle("Error");
-//                    MainActivity.alert.setIcon(android.R.drawable.ic_dialog_alert);
-//                    MainActivity.alert.setMessage("Request time out");
-//                    MainActivity.alert.show();
+                    alert.setMessage(R.string.str_alert_rto);
+                    alert.show();
                 }
             }
 
             @Override
             public void onFailure(int statuscode, Throwable error, String content) {
+                dialog.hide();
 //                MainActivity.refresh.setRefreshing(false);
-//                if(statuscode==404){
-////                    MainActivity.alert.setTitle("Error");
-////                    MainActivity.alert.setIcon(android.R.drawable.ic_dialog_alert);
-////                    MainActivity.alert.setMessage("Not found");
-////                    MainActivity.alert.show();
-//                }else if(statuscode==500){
-////                    MainActivity.alert.setTitle("Error");
-////                    MainActivity.alert.setIcon(android.R.drawable.ic_dialog_alert);
-////                    MainActivity.alert.setMessage("Internal server error");
-////                    MainActivity.alert.show();
-//                }else{
-////                    MainActivity.alert.setTitle("Error");
-////                    MainActivity.alert.setIcon(android.R.drawable.ic_dialog_alert);
-////                    MainActivity.alert.setMessage("Please check your internet connection");
-////                    MainActivity.alert.show();
-//                }
+                if(statuscode==404){
+                    alert.setMessage(statuscode+": "+R.string.str_alert_404);
+                    alert.show();
+                }else if(statuscode==500){
+                    alert.setMessage(statuscode+": "+R.string.str_alert_500);
+                    alert.show();
+                }else{
+                    alert.setMessage(statuscode+": "+R.string.str_alert_net);
+                    alert.show();
+                }
             }
         });
     }

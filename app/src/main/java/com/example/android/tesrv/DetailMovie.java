@@ -2,6 +2,8 @@ package com.example.android.tesrv;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -48,9 +50,28 @@ public class DetailMovie extends AppCompatActivity implements SwipeRefreshLayout
     private SwipeRefreshLayout refresh;
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
+
+        String title = getIntent().getStringExtra("judul");
+        id = getIntent().getStringExtra("id");
+        String desc = getIntent().getStringExtra("desc");
+        String thn = getIntent().getStringExtra("tahun");
+        String backdrop = getIntent().getStringExtra("backdrop");
+        String v = getIntent().getStringExtra("vote");
+
+        if(getSupportActionBar()!=null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            setTitle(title);
+        }
 
         judul = (TextView) findViewById(R.id.txt_title_detail);
         deskripsi = (TextView) findViewById(R.id.txt_desc);
@@ -75,14 +96,7 @@ public class DetailMovie extends AppCompatActivity implements SwipeRefreshLayout
         });
         refresh.setRefreshing(true);
 
-        String title = getIntent().getStringExtra("judul");
-        id = getIntent().getStringExtra("id");
-        String desc = getIntent().getStringExtra("desc");
-        String thn = getIntent().getStringExtra("tahun");
-        String backdrop = getIntent().getStringExtra("backdrop");
-        String v = getIntent().getStringExtra("vote");
-
-        Picasso.with(this).load(backdrop).placeholder(R.drawable.placeholder).into(img);
+        Picasso.with(this).load(backdrop).into(img);
         judul.setText(title);
         deskripsi.setText(desc);
         rate.setText(v + "/10");

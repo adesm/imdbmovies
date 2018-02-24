@@ -28,7 +28,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item,null);
         int width = parent.getMeasuredWidth()/2;
-        int height = 500;
+        int height = 550;
         layoutView.setLayoutParams(new RecyclerView.LayoutParams(width,height));
         RecyclerViewHolder holder = new RecyclerViewHolder(layoutView);
         return holder;
@@ -38,7 +38,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         Picasso.with(context).load(
                 "https://image.tmdb.org/t/p/w185"+ movieItems.get(position).posterPath)
-                .placeholder(R.drawable.placeholder)
                 .into(holder.img);
         holder.title.setText(movieItems.get(position).title);
         holder.date.setText(movieItems.get(position).releaseDate);
