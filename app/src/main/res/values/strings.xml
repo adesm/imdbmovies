@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IMDB Movies</string>
+    <string name="str_txt_top_title">Top Movies</string>
+    <string name="str_txt_coming_title">Up Coming Movies</string>
+    <string name="str_txt_now_title">Now Playing</string>
+    <string name="str_txt_pop_title">Popular Movies</string>
+    <string name="str_txt_sim_title">Similar Movies</string>
+    <string name="str_txt_rec_title">Recommendation Movies</string>
+    <string name="str_txt_release_date">Release Date</string>
+    <string name="str_txt_rate">Rating</string>
+    <string name="str_txt_videos">Videos</string>
+</resources>
