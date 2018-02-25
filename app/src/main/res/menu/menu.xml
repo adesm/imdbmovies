@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/popular"
+        android:id="@+id/about"
         android:orderInCategory="0"
-        android:title="Popular"
+        android:title="About"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/top"
-        android:orderInCategory="1"
-        android:title="Top Rated"
-        app:showAsAction="never"/>
+    <!--<item-->
+        <!--android:id="@+id/top"-->
+        <!--android:orderInCategory="1"-->
+        <!--android:title="Top Rated"-->
+        <!--app:showAsAction="never"/>-->
 
-    <item
-        android:id="@+id/coming"
-        android:orderInCategory="2"
-        android:title="Coming Soon"
-        app:showAsAction="never"/>
+    <!--<item-->
+        <!--android:id="@+id/coming"-->
+        <!--android:orderInCategory="2"-->
+        <!--android:title="Coming Soon"-->
+        <!--app:showAsAction="never"/>-->
 
     <!--<item-->
         <!--android:id="@+id/popular"-->

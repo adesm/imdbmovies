@@ -11,6 +11,8 @@
     <string name="str_txt_videos">Videos</string>
     <string name="str_alert_load">Loading movies...</string>
     <string name="str_alert_error_title">Error</string>
+    <string name="str_alert_about_title">About</string>
+    <string name="str_alert_about">API from TMDB API</string>
     <string name="str_alert_rto">Request time out</string>
     <string name="str_alert_404">Not found</string>
     <string name="str_alert_500">Internal server error</string>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -79,19 +80,17 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         refresh.setRefreshing(false);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()){
-//            case R.id.popular:
-//                requestJsonObject(0);
-//                break;
-//            case R.id.top:
-//                requestJsonObject(1);
-//                break;
-//            case R.id.coming:
-//                requestJsonObject(2);
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.about:
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setTitle(R.string.str_alert_about_title);
+                alert.setMessage(R.string.str_alert_about);
+                alert.setCancelable(true);
+                alert.show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -87,14 +87,12 @@ public class Builder {
 //                MainActivity.refresh.setRefreshing(false);
                 if(statuscode==404){
                     alert.setMessage(statuscode+": "+R.string.str_alert_404);
-                    alert.show();
                 }else if(statuscode==500){
                     alert.setMessage(statuscode+": "+R.string.str_alert_500);
-                    alert.show();
                 }else{
                     alert.setMessage(statuscode+": "+R.string.str_alert_net);
-                    alert.show();
                 }
+                alert.show();
             }
         });
     }
