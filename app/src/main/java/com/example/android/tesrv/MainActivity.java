@@ -1,6 +1,5 @@
 package com.example.android.tesrv;
 
-import android.app.ProgressDialog;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,9 +11,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    public static int loadCounter;
     public static AlertDialog.Builder alert;
-    public static ProgressDialog dialog;
     public static final String URL = "https://api.themoviedb.org/3/movie/";
     public static SwipeRefreshLayout refresh;
     RecyclerView recyclerViewPop,recyclerViewTop,recyclerViewComing,recyclerViewNow;
@@ -25,15 +22,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadCounter = 0;
-
         recyclerViewPop = (RecyclerView)findViewById(R.id.recycler_view_pop);
         recyclerViewTop = (RecyclerView)findViewById(R.id.recycler_view_top);
         recyclerViewComing = (RecyclerView)findViewById(R.id.recycler_view_coming);
         recyclerViewNow = (RecyclerView)findViewById(R.id.recycler_view_now);
         refresh = (SwipeRefreshLayout)findViewById(R.id.refresh_view);
         alert = new AlertDialog.Builder(MainActivity.this);
-        dialog = new ProgressDialog(MainActivity.this);
 
         builder = new Builder(MainActivity.this,URL+"popular");
         builder2 = new Builder(MainActivity.this,URL+"top_rated");
@@ -48,13 +42,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             }
         });
 
-//        dialog.setMessage("Loading...");
-//        dialog.setCancelable(true);
-//        dialog.show();
         refresh.setRefreshing(true);
         initMovies();
-//        if(hasFetched)
-//            dialog.hide();
     }
 
 

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -76,7 +75,7 @@ public class Builder {
                     recyclerView.setAdapter(recyclerViewAdapter);
                 }catch (Exception e){
                     e.printStackTrace();
-                    alert.setMessage(R.string.str_alert_rto);
+                    alert.setMessage(context.getString(R.string.str_alert_rto));
                     alert.show();
                 }
             }
@@ -86,11 +85,11 @@ public class Builder {
                 dialog.hide();
 //                MainActivity.refresh.setRefreshing(false);
                 if(statuscode==404){
-                    alert.setMessage(statuscode+": "+R.string.str_alert_404);
+                    alert.setMessage(statuscode+": "+context.getString(R.string.str_alert_404));
                 }else if(statuscode==500){
-                    alert.setMessage(statuscode+": "+R.string.str_alert_500);
+                    alert.setMessage(statuscode+": "+context.getString(R.string.str_alert_500));
                 }else{
-                    alert.setMessage(statuscode+": "+R.string.str_alert_net);
+                    alert.setMessage(statuscode+": "+context.getString(R.string.str_alert_net));
                 }
                 alert.show();
             }

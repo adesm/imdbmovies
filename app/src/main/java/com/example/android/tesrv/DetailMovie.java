@@ -2,11 +2,8 @@ package com.example.android.tesrv;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,18 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.Objects;
 
 /**
  * Created by adesm on 10/02/18.
@@ -41,8 +34,6 @@ public class DetailMovie extends AppCompatActivity implements SwipeRefreshLayout
     private ImageView img;
     private String id,videoPath = null;
     Uri uri;
-    public static AlertDialog.Builder alert;
-    public static ProgressDialog dialog;
     private final String API_KEY = "7aeff35b7698274d32975dd69c5103d8";
     private RecyclerView recyclerViewSim,recyclerViewRec;
     private Builder builder,builder2;
@@ -83,8 +74,6 @@ public class DetailMovie extends AppCompatActivity implements SwipeRefreshLayout
         recyclerViewSim = (RecyclerView) findViewById(R.id.recycler_view_similar);
         recyclerViewRec = (RecyclerView) findViewById(R.id.recycler_view_recomend);
         refresh = (SwipeRefreshLayout)findViewById(R.id.refresh_detail_view);
-        alert = new AlertDialog.Builder(this);
-        dialog = new ProgressDialog(this);
 
         refresh.setOnRefreshListener((SwipeRefreshLayout.OnRefreshListener)DetailMovie.this);
         refresh.post(new Runnable() {
@@ -107,9 +96,6 @@ public class DetailMovie extends AppCompatActivity implements SwipeRefreshLayout
         params = new RequestParams();
         params.put("api_key",API_KEY);
 
-//        dialog.setMessage("Loading...");
-//        dialog.setCancelable(true);
-//        dialog.show();
         initMovies();
     }
 
@@ -126,8 +112,6 @@ public class DetailMovie extends AppCompatActivity implements SwipeRefreshLayout
             uri = Uri.parse(videoPath);
         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
         startActivity(intent);
-//            videoView.setVideoURI(uri);
-//            videoView.start();
         }else
             Toast.makeText(this,"Video not found.",Toast.LENGTH_SHORT).show();
 
