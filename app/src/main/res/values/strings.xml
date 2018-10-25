@@ -1,4 +1,8 @@
 <resources>
+    <!--Admob credential-->
+    <string name="admob_app_id">ca-app-pub-2917426024691439~3638506383</string>
+    <string name="admob_interstitial_id">ca-app-pub-2917426024691439/9417570388</string>
+    
     <string name="app_name">IMDB Movies</string>
     <string name="str_txt_top_title">Top Movies</string>
     <string name="str_txt_coming_title">Up Coming Movies</string>

@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MobileAds.initialize(this, "ca-app-pub-2917426024691439~3638506383");
+        MobileAds.initialize(this, getString(R.string.admob_app_id));
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId(getString(R.string.admob_interstitial_id));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         recyclerViewPop = (RecyclerView)findViewById(R.id.recycler_view_pop);
