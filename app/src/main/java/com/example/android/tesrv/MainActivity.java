@@ -5,15 +5,21 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     public static AlertDialog.Builder alert;
     public static final String URL = "https://api.themoviedb.org/3/movie/";
     public static SwipeRefreshLayout refresh;
+    private InterstitialAd mInterstitialAd;
     RecyclerView recyclerViewPop,recyclerViewTop,recyclerViewComing,recyclerViewNow;
     Builder builder,builder2,builder3,builder4;
 
@@ -21,6 +27,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(this, "ca-app-pub-2917426024691439~3638506383");
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         recyclerViewPop = (RecyclerView)findViewById(R.id.recycler_view_pop);
         recyclerViewTop = (RecyclerView)findViewById(R.id.recycler_view_top);
@@ -67,6 +79,12 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         builder3.buildRecycler(recyclerViewComing);
         builder4.buildRecycler(recyclerViewNow);
         refresh.setRefreshing(false);
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
     }
 
     @Override

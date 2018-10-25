@@ -15,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -39,6 +42,7 @@ public class DetailMovie extends AppCompatActivity implements SwipeRefreshLayout
     private Builder builder,builder2;
     private RequestParams params;
     private SwipeRefreshLayout refresh;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -50,6 +54,18 @@ public class DetailMovie extends AppCompatActivity implements SwipeRefreshLayout
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
+
+        MobileAds.initialize(this, "ca-app-pub-2917426024691439~3638506383");
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
 
         String title = getIntent().getStringExtra("judul");
         id = getIntent().getStringExtra("id");
@@ -105,6 +121,12 @@ public class DetailMovie extends AppCompatActivity implements SwipeRefreshLayout
         builder.buildRecycler(recyclerViewSim);
         builder2.buildRecycler(recyclerViewRec);
         refresh.setRefreshing(false);
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
     }
 
     public void playVideo(View view) {
