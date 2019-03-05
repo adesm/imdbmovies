@@ -1,4 +1,4 @@
-package com.example.android.tesrv;
+package com.depeloper.android.imdb_movies;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.tesrv">
+    package="com.depeloper.android.imdb_movies">
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
@@ -14,14 +14,14 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_app_id"/>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.depeloper.android.imdb_movies.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailMovie">
+        <activity android:name="com.depeloper.android.imdb_movies.DetailMovie">
         </activity>
     </application>
 

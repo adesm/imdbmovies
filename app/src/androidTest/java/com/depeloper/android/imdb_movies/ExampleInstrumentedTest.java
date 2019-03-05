@@ -1,4 +1,4 @@
-package com.example.android.tesrv;
+package com.depeloper.android.imdb_movies;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

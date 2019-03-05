@@ -1,4 +1,4 @@
-package com.example.android.tesrv;
+package com.depeloper.android.imdb_movies;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;

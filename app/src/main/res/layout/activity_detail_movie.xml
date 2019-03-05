@@ -3,7 +3,7 @@
     android:id="@+id/refresh_detail_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.android.tesrv.DetailMovie"
+    tools:context="com.depeloper.android.imdb_movies.DetailMovie"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eee">

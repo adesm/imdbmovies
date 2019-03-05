@@ -1,4 +1,4 @@
-package com.example.android.tesrv;
+package com.depeloper.android.imdb_movies;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
